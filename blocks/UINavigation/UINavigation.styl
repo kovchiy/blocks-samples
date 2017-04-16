@@ -1,0 +1,56 @@
+.UIStackNavigation
+    animation-time = 300ms
+
+    &_pushed
+        position fixed
+        left 0
+        right 0
+        top 0
+        bottom 0
+        overflow-y hidden
+
+    &__layer:last-child:not(:first-child)
+        position absolute
+        top 0
+        bottom 0
+        width 100%
+        touch-scroll y
+        z-index 100
+
+        .UIStackNavigation_hasFog & .UIStackNavigation__fog
+            display block
+
+        .UIStackNavigation_hasFog.UIStackNavigation_pushing & .UIStackNavigation__fog
+            animation-name UIStackNavigationPush
+
+        .UIStackNavigation_hasFog.UIStackNavigation_popping & .UIStackNavigation__fog
+            animation-name UIStackNavigationPop
+
+    &__fog
+        display none
+        position absolute
+        top 0
+        bottom 0
+        left 0
+        right 0
+        background rgba(0,0,0,.5)
+        z-index 1
+        animation-duration animation-time
+        animation-fill-mode forwards
+        animation-timing-function ease-in-out
+
+    @keyframes UIStackNavigationPush
+        0%
+            opacity 0
+        100%
+            opacity 1
+
+    @keyframes UIStackNavigationPop
+        0%
+            opacity 1
+        100%
+            opacity 0
+
+.UISwitchNavigation
+    &__layer_state_release
+        display none
