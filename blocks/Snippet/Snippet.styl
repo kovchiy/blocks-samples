@@ -1,0 +1,113 @@
+.Snippet
+    sideaction-width = 60px
+
+    position relative
+
+    &__title
+        color color-link
+        margin-top -.2ex
+        .snippet__icon
+            float right
+            margin-left 1ex
+
+    > *:last-child:not(:first-child)
+        margin-bottom -.5ex
+
+    &__url
+        ellipsis nowrap
+        color color-url
+        margin-top .15ex
+
+    &__domain
+        display inline
+        font-weight bold
+
+    &__path
+        display inline
+
+    &__call
+        float right
+        margin-left 1ex
+        margin-top 1ex
+
+    &__text
+        & + &
+            margin-top 1em
+
+    &__custom
+        > .showcase:first-child
+        > .gallery:first-child
+            margin-top 1.4ex
+
+        > .table:first-child
+            margin-top 1.6ex
+
+        > .minisnippet
+            margin-top 1.7ex
+
+    &__ad
+        line-height 1.4em !important
+        padding 0 .6em
+        margin-left .8ex
+        border-radius control-border-radius-touch
+        display inline-block
+        background #fef5cd
+        color #000
+
+    &__sitelink
+        color color-link
+        display inline-block
+        & + &
+            margin-left 2ex
+
+    &__metas
+        overflow hidden
+
+    &__meta
+        opacity alpha-text
+        display inline
+        & + &
+            margin-left 2ex
+
+    &__rating
+        padding-top 1.4ex
+
+    &__actions
+        padding-top 1em
+        white-space nowrap
+
+    &__action
+        &_icon
+            &_call .button__icon
+                mask-image @css{url(i/call.svg)}
+
+            &_pin .button__icon
+                mask-image @css{url(i/pin.svg)}
+
+    &__sideaction
+        float right
+        margin-top -2ex
+        width sideaction-width
+        height sideaction-width
+        &_icon
+            &_call .button__icon
+                mask-image @css{url(i/call-2x.svg)}
+
+            &_pin .button__icon
+                mask-image @css{url(i/pin.svg)}
+
+        .serp_desktop &
+            display none
+
+    &_hasSideaction &__text
+    &_hasSideaction &__url
+        margin-right sideaction-width + 8px
+        .serp_desktop &
+            margin-right 0
+
+    &__thumb
+        float right
+        border-radius 4px
+
+    > .HorizontalScroll
+        padding-top 1ex

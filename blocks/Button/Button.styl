@@ -1,0 +1,177 @@
+.button
+
+    /**
+     * Mixin
+     */
+    define-theme(theme, text, background, action, check)
+        background-luminosity = luminosity(background)
+
+        &_theme_{theme}
+
+            if is-light-color(background)
+                control-background = control-background-light
+                control-focus = control-focus-light
+                control-disable = control-disable-light
+            else if is-mid-color(background)
+                control-background = control-background-mid
+                control-focus = control-focus-mid
+                control-disable = control-disable-mid
+            else if is-dark-color(background)
+                control-background = control-background-dark
+                control-focus = control-focus-dark
+                control-disable = control-disable-dark
+
+            background-color background * control-background
+
+            &.button_mouseover
+                background-color background * control-background * control-hover
+                &.button_action
+                    background-color action * control-hover
+
+            &.button_circle
+                box-shadow 0 0 0 1px background * control-background
+
+            &.button_disabled:not(.button_loading)
+                background-color background * control-disable
+                .button__label
+                    color mix(background, text, 50%)
+
+            &.button_focus
+                &.button_keyboard
+                    control-focus(background * control-focus)
+
+                    &.button_action
+                    &.button_loading
+                        control-focus(action * control-focus)
+
+                    &.button_state_active
+                        control-focus(check * control-focus)
+
+            &.button_loading
+                background lighten(action, 15%)
+
+                &:before
+                    background action * (luminosity(action) <= .65 ? .97 : .9)
+
+                if abs(luminosity(action) - luminosity(text)) < .5
+                    .button__label
+                        color background
+
+            &.button_action
+                background-color action
+                if abs(luminosity(action) - luminosity(text)) < .5
+                    .button__label
+                        color background
+
+            .button__label
+                color text
+
+            .icon
+                background-color text
+
+    define-shape(size-s, size-m)
+        &_size
+            &_S
+                height size-s
+                line-height size-s
+                padding 0 round(size-s * control-margin-factor)
+                &.button_nolabel
+                    width size-s
+            &_M
+                height size-m
+                line-height size-m
+                padding 0 round(size-m * control-margin-factor)
+                &.button_nolabel
+                &.button_circle
+                    width size-m
+
+    /**
+     * Style
+     */
+    control-style none
+
+    for theme in control-theme
+        define-theme(
+            theme,
+            control-theme[theme].text,
+            control-theme[theme].background,
+            control-theme[theme].action,
+            control-theme[theme].check
+        )
+
+    @media screen-touch
+        define-shape(control-size-s-touch, control-size-m-touch)
+
+    @media screen-desktop
+        define-shape(control-size-s-desktop, control-size-m-desktop)
+
+    text-align center
+    border-radius radius-inside
+    transition:
+        transform .1s ease-out,
+        background .15s linear,
+        color .15s linear
+
+    .button__label
+        display inline-block
+        vertical-align middle
+        position relative
+        z-index 2
+
+    &_disabled
+        cursor default @css{!important}
+
+    &_loading
+        overflow hidden
+        position relative
+
+        .button__label
+            position relative
+            z-index 1
+
+        &:before
+            content ''
+            position absolute
+            top 0
+            bottom 0
+            left -12px
+            right 0
+            mask left top repeat @css{url(i/diagonal-loading.svg)}
+
+            animation-name button_loading
+            animation-duration .5s
+            animation-iteration-count infinite
+            animation-timing-function linear
+
+            @keyframes button_loading
+                from
+                    transform translateX(0px)
+                to
+                    transform translateX(12px)
+
+    .icon
+        vertical-align middle
+        margin-right .5ex
+        margin-left -.7ex
+
+    &_moment
+        &_release
+            transform scale(1)
+        &_press
+            transform scale(.96)
+
+    &_nolabel
+    &_circle
+        padding 0
+        .icon
+            display block
+            width auto
+            margin auto
+            position absolute
+            left 0
+            right 0
+            top 0
+            bottom 0
+
+    &_circle
+        border-radius 100%

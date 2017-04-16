@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg width="16px" height="16px" viewBox="0 0 16 16" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 3.6.1 (26313) - http://www.bohemiancoding.com/sketch -->
+    <title>Artboard 55 Copy</title>
+    <desc>Created with Sketch.</desc>
+    <defs>
+        <path id="path-1" d="M0,0 L14,0 L14,14 L0,14"></path>
+    </defs>
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="Artboard-55" transform="translate(-111.000000, -260.000000)">
+            <g id="Slices" transform="translate(59.000000, 66.000000)"></g>
+            <g id="Page-1" transform="translate(112.000000, 261.000000)">
+                <mask id="mask-2" fill="white">
+                    <use xlink:href="#path-1"></use>
+                </mask>
+                <g id="Clip-2"></g>
+                <path d="M5.5827,3.8846 L2.9247,-0.0004 C-0.0273,0.7116 0.0037,3.2326 0.0037,3.2326 C0.0037,3.2326 -0.1073,5.1946 0.9397,6.7636 C1.9857,8.3326 2.4297,9.0216 3.7157,10.3066 C5.0007,11.5916 5.6767,12.0216 7.2467,13.0676 C8.8167,14.1136 10.7727,13.9966 10.7727,13.9966 C10.7727,13.9966 13.2007,13.9996 13.9997,11.0696 L10.1667,8.4366 C10.1667,8.4366 9.2297,9.7436 9.0757,9.9926 C8.9007,10.2756 8.4767,10.5826 8.0147,10.3006 C7.5527,10.0186 6.6647,9.4856 5.6037,8.4216 C4.5427,7.3576 3.9907,6.4576 3.7077,5.9966 C3.4257,5.5356 3.7667,5.0896 4.0017,4.9216 C4.2367,4.7546 5.5827,3.8846 5.5827,3.8846" id="Fill-1" fill="#000000" mask="url(#mask-2)"></path>
+            </g>
+        </g>
+    </g>
+</svg>

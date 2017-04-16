@@ -1,0 +1,89 @@
+/*
+ * Параметризируемая типографика
+ * @font название шрифта, для которого сгенерируются стили
+ * @S    font-size-small      line-height-small line-height-medium line-height-large
+ * @M    font-size-medium     line-height-small line-height-medium line-height-large
+ * @L    font-size-large      line-height-small line-height-medium line-height-large
+ * @XL   font-size-extralarge line-height-small line-height-medium line-height-large
+ */
+TypoDefine(options = {
+    font: false
+    S:    1em 1em 1em 1em
+    M:    1em 1em 1em 1em
+    L:    1em 1em 1em 1em
+    XL:   1em 1em 1em 1em
+    caps: 1em 1em
+})
+    arrayValue(array, index)
+        array[index]
+
+    {options.font && '.Typo_font_' + options.font}.Typo
+        for i in S M L XL
+            if (options[i])
+                &_text_{i}
+                    font-size arrayValue(options[i], 0)
+                    for j, jj in S M L
+                        lh = arrayValue(options[i], jj + 1)
+                        if (lh)
+                            &.Typo_line_{j}
+                                line-height lh
+        &_caps
+            font-size: options.caps[0]
+            line-height: options.caps[1]
+
+@media screen-desktop
+    TypoDefine({
+        S:    11px 16px 17px 20px
+        M:    13px 16px 17px 20px
+        L:    18px 22px 24px 26px
+        XL:   30px 30px 30px 30px
+        caps: 11px
+    })
+
+@media screen-touch
+    TypoDefine({
+        S:    12px 17px 19px 22px
+        M:    15px 17px 19px 22px
+        L:    20px 22px 24px 26px
+        XL:   34px 42px 42px 42px
+        caps: 13px
+    })
+
+@media screen-phone-320
+    TypoDefine({
+        S: 12px 17px 19px 22px
+        M: 14px 17px 18px 22px
+        L: 19px 22px 22px
+        caps: 13px
+    })
+
+.Typo
+    font-thin = '.SFNSDisplay-Thin', HelveticaNeue-thin, sans-serif-thin
+    font-light = '.SFNSDisplay-Light', HelveticaNeue-Light, sans-serif-light
+    font-regular = '.SFNSDisplay-Regular', HelveticaNeue, arial, sans-serif
+    font-medium = '.SFNSDisplay-Medium', HelveticaNeue-Medium, sans-serif-medium
+
+    font-family font-regular // Шрифт по умолчанию
+
+    &_font_serif
+        font-family georgia, serif
+
+    // Начертания
+    &_caps
+        text-transform uppercase
+        letter-spacing .08em
+        font-weight bold
+    &_thin
+        font-family font-thin
+    &_light
+        font-family font-light
+    &_regular
+        font-family font-regular
+    &_medium
+        font-family font-medium
+    &_bold
+        font-family font-regular
+        font-weight bold
+    &_italic
+        font-family font-regular
+        font-style italic

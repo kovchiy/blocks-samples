@@ -1,0 +1,109 @@
+.Suggest
+    height = 44px
+    line-height = 16px
+    margin = 4px
+    submit-width = 80px
+
+    &__body
+        background #FFF
+        position relative
+        z-index 2
+        margin-bottom 100px
+
+    &__space
+        position absolute
+        z-index 1
+        top 0
+        bottom 0
+        left 0
+        right 0
+
+    &__head
+        position relative
+        background color-action
+        min-height height
+
+    &__textarea
+        touch-highlight none
+        display block
+        box-sizing border-box
+        width 100%
+        resize none
+        border none
+        box-sizing border-box
+        border-radius 0
+        margin 0
+        background #FFF
+        line-height line-height @css{!important}
+        padding ((height - margin * 2 - line-height) / 2)
+        padding-right height - margin * 2
+
+        &:focus
+            outline none
+
+    &__textareaWrap
+        position absolute
+        top margin
+        left margin
+        right submit-width
+
+    &__clear
+        position absolute
+        z-index 2
+        top 0
+        bottom 0
+        right 0
+        width height - margin * 2
+        background center center no-repeat @css{url(i/clear.svg)}
+        opacity .2
+        transition opacity 200ms ease-out
+        &_moment_press
+            opacity 1
+
+        .suggest_empty &
+            display none
+
+
+
+    &__submit
+        width submit-width
+        position absolute
+        top 0
+        right 0
+        bottom 0
+        text-align center
+
+    &__submitLabel
+        position absolute
+        line-height 20px !important
+        top 50%
+        left 0
+        right 0
+        margin-top -10px
+        .app_android &
+            margin-top -8px
+
+
+
+    &__phrases
+        padding 10px
+
+
+    &__phrase.button
+        height 32px
+        line-height 32px
+        padding 0 10px
+
+
+    &__lines
+        padding 0 10px
+
+    &__line
+        margin 0 -10px
+        line-height control-size-m-touch !important
+        background transparent
+        transition background 200ms ease-out
+        ellipsis nowrap
+
+        &_moment_press
+            background rgba(0,0,0,.05)

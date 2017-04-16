@@ -1,0 +1,117 @@
+.Thumb
+    display inline-block
+    position relative
+    background center center no-repeat
+    overflow hidden
+    box-shadow none
+    vertical-align top
+
+    &__images
+        position absolute
+        top 0
+        bottom 0
+        left 0
+        right 0
+        background #000
+
+    &__image
+        background center center no-repeat
+        background-size cover
+        position absolute
+        top 0
+        bottom 0
+        left 0
+        right 0
+
+    &__title
+        position absolute
+        z-index 4
+        color #FFF
+        bottom 0
+        right 0
+        padding 5px 10px
+
+
+    &_parallax > &__image
+    &_parallax > &__images
+        top -10px
+        bottom -10px
+
+    &_slideshow &__image
+        transition opacity 2500ms
+        &_state
+            &_active
+                opacity 1
+                z-index 2
+            &_release
+                opacity 0
+                z-index 1
+
+    &_fit
+        &_contain
+            background-size contain
+        &_cover
+            background-size cover
+
+    &_shade
+        &:before
+            content ''
+            position absolute
+            top 0
+            bottom 0
+            left 0
+            right 0
+            background rgba(0,0,0,.05)
+
+    &_grid
+        image-rendering pixelated
+        &:before
+            content ''
+            position absolute
+            top 0
+            bottom 0
+            left 0
+            right 0
+            background left top repeat @css{url(i/grid.svg)}
+            z-index 3
+
+    &_theme
+        &_app
+            border-radius 23%
+            overflow hidden
+            background-color transparent
+
+        &_userpic
+            border-radius 100%
+
+    &:after
+        content ''
+        display block
+
+    &_ratio
+        &_1x1:after
+            padding-bottom 100%
+        &_1x2:after
+            padding-bottom 200%
+        &_2x1:after
+            padding-bottom 50%
+        &_2x3:after
+            padding-bottom 150%
+        &_3x2:after
+            padding-bottom 66.67%
+        &_3x4:after
+            padding-bottom 133.33%
+        &_4x3:after
+            padding-bottom 75%
+        &_16x10:after
+            padding-bottom 62.5%
+
+    &_rounded
+        border-radius radius-inside
+
+    &_shadow
+        transition box-shadow 300ms
+        box-shadow 0 5px 20px -5px rgba(0,0,0,1)
+
+    &_border
+        box-shadow inset 0 0 0 2px rgba(0,0,0,alpha-border)

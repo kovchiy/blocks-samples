@@ -1,0 +1,223 @@
+.Overlay
+    topbar-height = control-size-m-touch
+    animation-time = 300ms
+
+    /**
+     * Style
+     */
+    position absolute
+    z-index 2
+
+    &_Type
+        &_side
+            top 0
+            bottom 0
+            width 100vw
+
+            &.Overlay_State
+                &_active
+                    animation-duration animation-time
+                    animation-fill-mode forwards
+                    animation-name OverlaySidePush
+                    animation-timing-function ease-in-out
+                &_release
+                    animation-duration animation-time
+                    animation-fill-mode forwards
+                    animation-name OverlaySidePop
+                    animation-timing-function ease-in-out
+
+        &_expand
+            top 0
+            bottom 0
+            width 100vw
+
+            &.Overlay_State
+                &_active
+                    .overlay__background
+                        animation-duration animation-time
+                        animation-fill-mode forwards
+                        animation-name OverlayBackgroundExpandPush
+                        animation-timing-function ease-in-out
+                    .overlay__topbar
+                        animation-duration animation-time
+                        animation-fill-mode forwards
+                        animation-name OverlayTopBarExpandPush
+                        animation-timing-function ease-in-out
+                &_release
+                    .overlay__background
+                        animation-duration animation-time
+                        animation-fill-mode forwards
+                        animation-name OverlayBackgroundExpandPop
+                        animation-timing-function ease-in-out
+                    .overlay__topbar
+                        animation-duration animation-time
+                        animation-fill-mode forwards
+                        animation-name OverlayTopBarExpandPop
+                        animation-timing-function ease-in-out
+
+        &_partsideleft
+            top 0
+            bottom 0
+
+            &.Overlay_State
+                &_active
+                    animation-duration animation-time
+                    animation-fill-mode forwards
+                    animation-name OverlayPartsideleftPush
+                    animation-timing-function ease-in-out
+                &_release
+                    animation-duration animation-time
+                    animation-fill-mode forwards
+                    animation-name OverlayPartsideleftPop
+                    animation-timing-function ease-in-out
+
+        &_custom
+            top 0
+            bottom 0
+            width 100vw
+
+            &.Overlay_State
+                &_active
+                    animation-duration animation-time
+                    animation-fill-mode forwards
+                    animation-name OverlayCustomPush
+                    animation-timing-function ease-in-out
+                &_release
+                    animation-duration animation-time
+                    animation-fill-mode forwards
+                    animation-name OverlayCustomPop
+                    animation-timing-function ease-in-out
+
+    &__topBar
+        z-index 4
+        position absolute
+        top 0
+        left 0
+        right 0
+        height topbar-height
+        background #FFF
+        box-shadow 0 0 0 1px rgba(0,0,0,alpha-border)
+
+    &__topBarAction
+        z-index 2
+        position absolute
+        top 0
+        color color-link
+        height topbar-height
+        line-height topbar-height @css{!important}
+
+        .icon
+            vertical-align top
+            width topbar-height
+            height topbar-height
+            background color-link
+
+    &__topBarActionBack
+        left 0
+
+    &__topBarActionClose
+        right 0
+
+    &__topBarActionLabel
+        display inline-block
+        margin-left -1.4ex
+
+    &__topBarTitles
+        position absolute
+        z-index 1
+        left 0
+        right 0
+        top 0
+        bottom 0
+        text-align center
+        display flex
+        flex-direction column
+        justify-content center
+
+    &__topBarSubtitle
+        color rgba(0,0,0,alpha-text)
+
+    &__background
+        z-index 2
+        position absolute
+        top 0
+        bottom 0
+        left 0
+        right 0
+        background #FFF
+
+    &__content
+        z-index 3
+        position absolute
+        overflow auto
+        top 0
+        left 0
+        bottom 0
+        right 0
+
+    &_hastopbar &__content
+        padding-top topbar-height
+
+    /* Side */
+    @keyframes OverlaySidePush
+        0%
+            transform translate3d(100vw, 0px, 0px)
+        100%
+            transform translate3d(0px, 0px, 0px)
+
+    @keyframes OverlaySidePop
+        0%
+            transform translate3d(0px, 0px, 0px)
+        100%
+            transform translate3d(100vw, 0px, 0px)
+
+    /* Expand */
+    @keyframes OverlayBackgroundExpandPush
+        0%
+            opacity 0
+        100%
+            opacity 1
+
+    @keyframes OverlayBackgroundExpandPop
+        0%
+            opacity 1
+        100%
+            opacity 0
+
+    @keyframes OverlayTopBarExpandPush
+        0%
+            transform translate3d(0px, - topbar-height, 0px)
+        100%
+            transform translate3d(0px, 0px, 0px)
+
+    @keyframes OverlayTopBarExpandPop
+        0%
+            transform translate3d(0px, 0px, 0px)
+        100%
+            transform translate3d(0px, - topbar-height, 0px)
+
+    /* Partsideleft */
+    @keyframes OverlayPartsideleftPush
+        0%
+            transform translate3d(-100vw, 0px, 0px)
+        100%
+            transform translate3d(0px, 0px, 0px)
+
+    @keyframes OverlayPartsideleftPop
+        0%
+            transform translate3d(0px, 0px, 0px)
+        100%
+            transform translate3d(-100vw, 0px, 0px)
+
+    /* Custom */
+    @keyframes OverlayCustomPush
+        0%
+            display block
+        100%
+            display block
+
+    @keyframes OverlayCustomPop
+        0%
+            display block
+        100%
+            display block

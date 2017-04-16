@@ -1,0 +1,182 @@
+.Grid
+
+    /**
+     * Mixin
+     */
+    define(num, col, gap, marginx, marginy = marginx * 1.5)
+        gridWidth = num * col + (num - 1) * gap
+
+        inCols(prop = '', num, extra = 0)
+            {prop} num * col + (num - 1) * gap + extra
+
+        for i in 1..num
+            &_col_{i}
+                inCols(width, i)
+                &.Grid_square
+                    inCols(height, i)
+
+        &_colCheck
+            content join(' ', col, gap, num, marginx, marginy)
+
+        &_col
+            &_1Extra // На одну колонку больше, чем в сетке
+                inCols(width, num + 1)
+
+            for i in 1..2 // Число колонок плюс поле
+                &_{i}Margin
+                    inCols(width, i, marginx)
+
+            for i in 1..6 // Ширина сетки минус число колонок
+                &_{i}Left
+                    inCols(width, num - i)
+                for j in 1..4
+                    .Grid_col_{num - j} &_{i}Left
+                        inCols(width, num - j - i)
+
+            &_1LeftMargins // Ширина сетки минус колонка плюс поле
+                inCols(width, num - 1, marginx * 2)
+
+            &_third // Треть ширины сетки
+                width floor((gridWidth - (2 * gap)) / 3)
+
+            &_half // Половина ширины сетки
+                width (gridWidth / 2) - (gap / 2)
+                .Grid_col_9 &
+                    width (inCols('', 9) / 2) - (gap / 2)
+
+            &_max  // Ширина по максимальному числу колонок
+                inCols(width, num)
+
+        &_wrap // контейнер сетки
+            inCols(width, num, marginx * 2)
+            margin-left auto
+            margin-right auto
+
+        &_margin // поля со всех сторон
+            padding marginy marginx
+
+        &_marginPage
+            padding marginy marginx
+            padding-bottom marginy * 3
+
+        &_marginX // поля слева и справа
+            padding-left marginx
+            padding-right marginx
+
+        &_marginY // поля сверху и снизу
+            padding-top marginy
+            padding-bottom marginy
+
+        &_unmargin // отрицательные поля со всех сторон
+            margin (- marginx) (- marginy)
+
+        &_unmarginX // отрицательные поля слева и справа
+            margin-left - marginx
+            margin-right - marginx
+
+        &_marginRightGap // правое поле - межколонник
+            margin-right gap
+
+        &_marginLeftGap // левое поле - межколонник
+            margin-left gap
+
+        &_cell // горизонтальный отступ между компонентами - межколонник
+            display inline-block
+            vertical-align top
+            & + &
+                margin-left gap
+
+        &_tiles // горизонтальные и вертикальные отступы между компонентами - межколонник
+            margin-left - gap
+            margin-top - gap
+            .grid_tile
+                display inline-block
+                vertical-align top
+                margin-left gap
+                margin-top gap
+
+        &_row // отступ сверху между компонентами - вертикальное поле
+            &:not(:first-child)
+                margin-top marginy
+
+        &_rows > div + div // режим row для детей
+            margin-top marginy
+
+    /**
+     * Style
+     */
+    &_center
+        margin-left auto
+        margin-right auto
+        display block
+
+    &_hidden
+        display none
+
+    &_margin
+    &_marginX
+    &_marginY
+    &_marginPage
+        box-sizing border-box
+
+    &_col_stretch // Ширина 100%
+        width 100%
+
+    ratios = {
+        '1x1': 100%,
+        '1x2': 200%,
+        '2x1': 50%,
+        '2x3': 150%,
+        '3x2': 66.67%,
+        '3x4': 133.33%,
+        '4x3': 75%,
+        '16x10': 62.5%,
+        '16x9': 56.25%
+    }
+
+    for ratio in ratios
+        &_ratio_{ratio}
+            position relative
+            &:after
+                content ''
+                display block
+                padding-bottom ratios[ratio]
+
+    @media screen-desktop
+        define(12, 32px, 14px, 14px, 25px)
+
+    @media screen-tablet
+        define(11, 46px, 16px, 20px, 40px)
+
+    @media screen-phone-667
+        define(12, 38px, 15px, 23px, 25px)
+
+    @media screen-phone-600
+        define(11, 38px, 14px, 21px, 25px)
+
+    @media screen-phone-568
+        define(10, 38px, 16px, 22px, 25px)
+
+    @media screen-phone-540
+        define(9, 42px, 15px, 21px, 25px)
+
+    @media screen-phone-480
+        define(9, 36px, 14px, 22px, 25px)
+
+    @media screen-phone-414
+        define(8, 35px, 14px, 18px, 25px)
+
+    @media screen-phone-412
+        define(8, 34px, 14px, 21px, 25px)
+
+    @media screen-phone-411
+        define(8, 35px, 13px, 20px, 25px)
+
+    @media screen-phone-375
+        define(7, 35px, 15px, 20px, 25px)
+
+    @media screen-phone-360
+        define(7, 36px, 12px, 18px, 23px)
+
+    @media screen-phone-320
+        define(7, 30px, 12px, 19px, 23px)
